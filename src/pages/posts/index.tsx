@@ -7,6 +7,7 @@ export default function PostsPage() {
   if (isLoading) {
     return <div>Loading...</div>;
   }
+
   if (!data) {
     return <Error statusCode={404} />;
   }
@@ -15,7 +16,7 @@ export default function PostsPage() {
     <div className="w-full min-h-screen bg-gray-200 p-20">
       {data.map((item) => (
         <div key={item.id} className="mt-3">
-          <Post title={item.title} body={item.body} />
+          <Post title={item.title} body={item.body} id={item.id} />
         </div>
       ))}
     </div>

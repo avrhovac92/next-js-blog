@@ -86,7 +86,6 @@ export const userRouter = createRouter()
           code: "INTERNAL_SERVER_ERROR",
           message: JSON.stringify(error),
         });
-        console.log(error);
       }
     },
   })
@@ -115,6 +114,8 @@ export const userRouter = createRouter()
       });
 
       ctx.res.setHeader("Set-Cookie", serialize("token", jwt, { path: "/" }));
+
+      ctx.prisma.loginToken.delete({ where: { id: tokenId } });
 
       return {
         redirect: token.redirect,

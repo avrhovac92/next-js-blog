@@ -22,6 +22,18 @@ export const Redirection: React.FC = () => {
       >
         Login
       </button>
+      <button
+        onClick={() => goTo("posts/new")}
+        className="rounded-full bg-blue-300 p-5"
+      >
+        Create New Post
+      </button>
+      <button
+        onClick={() => goTo("posts")}
+        className="rounded-full bg-blue-300 p-5"
+      >
+        Posts
+      </button>
     </div>
   );
 };
