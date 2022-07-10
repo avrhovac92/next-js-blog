@@ -21,6 +21,7 @@ export const userRouter = createRouter()
       const { email, name } = input;
 
       try {
+        // TODO: validation
         const user = await ctx.prisma.user.create({ data: { email, name } });
         return user;
       } catch (error) {
