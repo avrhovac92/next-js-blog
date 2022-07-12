@@ -1,9 +1,9 @@
-import { trpc } from "../../utils/trpc";
-import Error from "next/error";
-import Post from "../../components/Post";
+import { trpc } from '../../utils/trpc';
+import Error from 'next/error';
+import Post from '../../components/Post';
 
 export default function PostsPage() {
-  const { data, isLoading } = trpc.useQuery(["post.get-all"]);
+  const { data, isLoading } = trpc.useQuery(['post.get-all']);
   if (isLoading) {
     return <div>Loading...</div>;
   }

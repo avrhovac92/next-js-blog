@@ -1,14 +1,14 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { CreateUserInput } from "../schema/user.schema";
-import { trpc } from "../utils/trpc";
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { CreateUserInput } from '../schema/user.schema';
+import { trpc } from '../utils/trpc';
 
 const LoginForm: React.FC = () => {
   const [success, setSuccess] = useState(false);
   const { handleSubmit, register } = useForm<CreateUserInput>();
   const router = useRouter();
-  const { mutate, error } = trpc.useMutation(["user.login-otp"], {
+  const { mutate, error } = trpc.useMutation(['user.login-otp'], {
     onSuccess: () => {
       setSuccess(true);
     },
@@ -20,14 +20,9 @@ const LoginForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {error && error.message}
-      {success && (
-        <p className="text-md text-gray-700 font-bold m-3">Check Your Email</p>
-      )}
+      {success && <p className="text-md text-gray-700 font-bold m-3">Check Your Email</p>}
       <div className="mb-4">
-        <label
-          htmlFor="email"
-          className="block text-gray-700 text-sm font-bold mb-2"
-        >
+        <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
           Email
         </label>
         <input
@@ -35,7 +30,7 @@ const LoginForm: React.FC = () => {
           id="email"
           type="email"
           placeholder="Email"
-          {...register("email")}
+          {...register('email')}
         />
       </div>
       <button

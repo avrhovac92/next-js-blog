@@ -1,15 +1,15 @@
-import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
-import { Redirection } from "../components/Redirection";
-import { CreateUserInput } from "../schema/user.schema";
-import { trpc } from "../utils/trpc";
+import { useRouter } from 'next/router';
+import { useForm } from 'react-hook-form';
+import { Redirection } from '../components/Redirection';
+import { CreateUserInput } from '../schema/user.schema';
+import { trpc } from '../utils/trpc';
 
 function RegisterPage() {
   const { handleSubmit, register } = useForm<CreateUserInput>();
   const router = useRouter();
-  const { mutate, error } = trpc.useMutation(["user.register"], {
+  const { mutate, error } = trpc.useMutation(['user.register'], {
     onSuccess: () => {
-      router.push("/login");
+      router.push('/login');
     },
   });
 
@@ -25,10 +25,7 @@ function RegisterPage() {
       >
         {error && error.message}
         <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
+          <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">
             Email
           </label>
           <input
@@ -36,14 +33,11 @@ function RegisterPage() {
             id="email"
             type="email"
             placeholder="Email"
-            {...register("email")}
+            {...register('email')}
           />
         </div>
         <div className="mb-4">
-          <label
-            htmlFor="name"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
+          <label htmlFor="name" className="block text-gray-700 text-sm font-bold mb-2">
             Name
           </label>
           <input
@@ -51,7 +45,7 @@ function RegisterPage() {
             id="name"
             type="text"
             placeholder="Name"
-            {...register("name")}
+            {...register('name')}
           />
         </div>
         <button

@@ -1,13 +1,13 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { CreatePostInput } from "../../schema/post.schema";
-import { trpc } from "../../utils/trpc";
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { CreatePostInput } from '../../schema/post.schema';
+import { trpc } from '../../utils/trpc';
 
 function CreatePostPage() {
   const { handleSubmit, register } = useForm<CreatePostInput>();
   const router = useRouter();
-  const { mutate, error } = trpc.useMutation(["post.create"], {
+  const { mutate, error } = trpc.useMutation(['post.create'], {
     onSuccess: (data) => {
       if (data) {
         router.push(`/posts/${data.id}`);
@@ -25,10 +25,7 @@ function CreatePostPage() {
         <form onSubmit={handleSubmit(onSubmit)}>
           {error && error.message}
           <div className="mb-4">
-            <label
-              htmlFor="title"
-              className="block text-gray-700 text-sm font-bold mb-2"
-            >
+            <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">
               Title
             </label>
             <input
@@ -36,7 +33,7 @@ function CreatePostPage() {
               id="title"
               type="text"
               placeholder="Title"
-              {...register("title")}
+              {...register('title')}
             />
           </div>
           <div className="mb-4">
@@ -44,7 +41,7 @@ function CreatePostPage() {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:border-blue-200 focus:shadow-outline focus:outline-none focus:shadow-lg focus:shadow-blue-200"
               id="body"
               placeholder="Post message..."
-              {...register("body")}
+              {...register('body')}
             />
           </div>
           <button

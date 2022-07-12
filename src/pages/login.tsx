@@ -1,18 +1,18 @@
-import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
-import { Redirection } from "../components/Redirection";
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import { Redirection } from '../components/Redirection';
 
-const VerifyToken = dynamic(() => import("../components/VerifyToken"), {
+const VerifyToken = dynamic(() => import('../components/VerifyToken'), {
   ssr: false,
 });
-const LoginForm = dynamic(() => import("../components/LoginForm"), {
+const LoginForm = dynamic(() => import('../components/LoginForm'), {
   ssr: false,
 });
 
 function LoginPage() {
   const router = useRouter();
 
-  const hash = router.asPath.split("#token=")[1];
+  const hash = router.asPath.split('#token=')[1];
 
   return (
     <div className="w-full min-h-screen bg-gray-200 p-20">

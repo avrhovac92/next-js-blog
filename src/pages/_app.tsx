@@ -1,17 +1,17 @@
 // src/pages/_app.tsx
-import { withTRPC } from "@trpc/next";
-import type { AppRouter } from "../server/router";
-import type { AppType, NextPageContext } from "next/dist/shared/lib/utils";
-import { loggerLink } from "@trpc/client/links/loggerLink";
-import { httpBatchLink } from "@trpc/client/links/httpBatchLink";
-import superjson from "superjson";
-import "../styles/globals.css";
-import { getBaseUrl } from "../utils/url";
-import { trpc } from "../utils/trpc";
-import { UserContextProvider } from "../context/user.context";
+import { withTRPC } from '@trpc/next';
+import type { AppRouter } from '../server/router';
+import type { AppType, NextPageContext } from 'next/dist/shared/lib/utils';
+import { loggerLink } from '@trpc/client/links/loggerLink';
+import { httpBatchLink } from '@trpc/client/links/httpBatchLink';
+import superjson from 'superjson';
+import '../styles/globals.css';
+import { getBaseUrl } from '../utils/url';
+import { trpc } from '../utils/trpc';
+import { UserContextProvider } from '../context/user.context';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
-  const { data } = trpc.useQuery(["user.me"]);
+  const { data } = trpc.useQuery(['user.me']);
 
   return (
     <UserContextProvider value={data}>
@@ -24,7 +24,7 @@ const headers = (ctx: NextPageContext | undefined) => {
   if (ctx?.req) {
     return {
       ...ctx.req.headers,
-      "x-ssr": "1",
+      'x-ssr': '1',
     };
   }
 

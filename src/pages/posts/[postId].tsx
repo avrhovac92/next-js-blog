@@ -1,12 +1,12 @@
-import Error from "next/error";
-import { useRouter } from "next/router";
-import Post from "../../components/Post";
-import { trpc } from "../../utils/trpc";
+import Error from 'next/error';
+import { useRouter } from 'next/router';
+import Post from '../../components/Post';
+import { trpc } from '../../utils/trpc';
 
 function PostPage() {
   const router = useRouter();
   const postId = router.query.postId as string;
-  const { data, isLoading } = trpc.useQuery(["post.get", { postId }], {
+  const { data, isLoading } = trpc.useQuery(['post.get', { postId }], {
     refetchInterval: false,
     refetchOnWindowFocus: false,
   });

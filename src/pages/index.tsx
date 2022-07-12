@@ -1,22 +1,22 @@
-import type { NextPage } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
-import { Redirection } from "../components/Redirection";
-import { useUserContext } from "../context/user.context";
-import { RemoveUserInput } from "../schema/user.schema";
-import { trpc } from "../utils/trpc";
+import type { NextPage } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import { Redirection } from '../components/Redirection';
+import { useUserContext } from '../context/user.context';
+import { RemoveUserInput } from '../schema/user.schema';
+import { trpc } from '../utils/trpc';
 
 const Home: NextPage = () => {
-  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const user = useUserContext();
-  const { data, error, isLoading } = trpc.useQuery(["user.get-all"], {
+  const { data, error, isLoading } = trpc.useQuery(['user.get-all'], {
     refetchInterval: false,
     refetchOnWindowFocus: false,
   });
-  const { mutate, error: err } = trpc.useMutation(["user.remove"], {
+  const { mutate, error: err } = trpc.useMutation(['user.remove'], {
     onSuccess: () => {
-      utils.invalidateQueries("user.get-all");
+      utils.invalidateQueries('user.get-all');
     },
   });
   const utils = trpc.useContext();
@@ -49,9 +49,7 @@ const Home: NextPage = () => {
                 {user.id} - {user.email}
               </p>
               <Link href="/posts/new">
-                <p className="text-2xl font-semibold text-blue-700">
-                  Create Post
-                </p>
+                <p className="text-2xl font-semibold text-blue-700">Create Post</p>
               </Link>
             </div>
           </div>
