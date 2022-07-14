@@ -40,7 +40,11 @@ export default withTRPC<AppRouter>({
       links,
       transformer: superjson,
       headers: () => headers(ctx),
-      queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
+      queryClientConfig: {
+        defaultOptions: {
+          queries: { staleTime: 60, refetchOnMount: false, refetchOnWindowFocus: false },
+        },
+      },
     };
   },
   ssr: true,

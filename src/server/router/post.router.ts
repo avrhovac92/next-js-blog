@@ -29,12 +29,17 @@ export const postRouter = createRouter()
   })
   .query('get-all', {
     resolve: ({ ctx }) => {
-      return ctx.prisma.post.findMany();
+      return ctx.prisma.post.findMany({
+        include: { user: { select: { name: true, email: true } } },
+      });
     },
   })
   .query('get', {
     input: getPostSchema,
     resolve: ({ input, ctx }) => {
-      return ctx.prisma.post.findUnique({ where: { id: input.postId } });
+      return ctx.prisma.post.findUnique({
+        where: { id: input.postId },
+        include: { user: { select: { name: true, email: true } } },
+      });
     },
   });

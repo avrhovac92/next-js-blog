@@ -6,10 +6,7 @@ import { trpc } from '../../utils/trpc';
 function PostPage() {
   const router = useRouter();
   const postId = router.query.postId as string;
-  const { data, isLoading } = trpc.useQuery(['post.get', { postId }], {
-    refetchInterval: false,
-    refetchOnWindowFocus: false,
-  });
+  const { data, isLoading } = trpc.useQuery(['post.get', { postId }]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -21,7 +18,12 @@ function PostPage() {
 
   return (
     <div className="w-full min-h-screen bg-gray-200 p-20">
-      <Post title={data.title} body={data.body} />
+      <Post
+        title={data.title}
+        body={data.body}
+        userEmail={data.user.email}
+        userName={data.user.name}
+      />
     </div>
   );
 }

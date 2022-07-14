@@ -10,10 +10,7 @@ import { trpc } from '../utils/trpc';
 const Home: NextPage = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
   const user = useUserContext();
-  const { data, error, isLoading } = trpc.useQuery(['user.get-all'], {
-    refetchInterval: false,
-    refetchOnWindowFocus: false,
-  });
+  const { data, error, isLoading } = trpc.useQuery(['user.get-all']);
   const { mutate, error: err } = trpc.useMutation(['user.remove'], {
     onSuccess: () => {
       utils.invalidateQueries('user.get-all');

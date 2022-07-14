@@ -4,6 +4,7 @@ import Post from '../../components/Post';
 
 export default function PostsPage() {
   const { data, isLoading } = trpc.useQuery(['post.get-all']);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -16,7 +17,13 @@ export default function PostsPage() {
     <div className="w-full min-h-screen bg-gray-200 p-20">
       {data.map((item) => (
         <div key={item.id} className="mt-3">
-          <Post title={item.title} body={item.body} id={item.id} />
+          <Post
+            title={item.title}
+            body={item.body}
+            id={item.id}
+            userName={item.user.name}
+            userEmail={item.user.email}
+          />
         </div>
       ))}
     </div>
