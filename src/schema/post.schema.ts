@@ -1,7 +1,7 @@
-import z from "zod";
+import z from 'zod';
 
 export const createPostSchema = z.object({
-  title: z.string().max(256, "Max title length is 256"),
+  title: z.string().max(256, 'Max title length is 256'),
   body: z.string().min(10),
 });
 

@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import nodemailer from 'nodemailer';
 
 export async function sendLoginEmail({
   email,
@@ -11,7 +11,7 @@ export async function sendLoginEmail({
 }) {
   const testAccount = await nodemailer.createTestAccount();
   const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
+    host: 'smtp.ethereal.email',
     port: 587,
     secure: false,
     auth: {
@@ -21,9 +21,9 @@ export async function sendLoginEmail({
   });
 
   const info = await transporter.sendMail({
-    from: "Jane Doe<j.doe@example.com>",
+    from: 'Jane Doe<j.doe@example.com>',
     to: email,
-    subject: "Login to your account",
+    subject: 'Login to your account',
     html: `Login by clicking <a href="${url}/login#token=${token}">HERE</a>`,
   });
 

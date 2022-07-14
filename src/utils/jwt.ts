@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 
-const SECRET = process.env.SECRET || "changeme";
+const SECRET = process.env.SECRET || 'changeme';
 
 export function signJwt(data: object) {
   return jwt.sign(data, SECRET);

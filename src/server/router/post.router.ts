@@ -1,6 +1,6 @@
-import { createPostSchema, getPostSchema } from "../../schema/post.schema";
-import { createRouter } from "../createRouter";
-import * as trpc from "@trpc/server";
+import { createPostSchema, getPostSchema } from '../../schema/post.schema';
+import { createRouter } from '../createRouter';
+import * as trpc from '@trpc/server';
 
 export const postRouter = createRouter()
   //   .middleware(async ({ ctx }) => {
@@ -8,13 +8,13 @@ export const postRouter = createRouter()
   //       //throw error
   //     }
   //   })
-  .mutation("create", {
+  .mutation('create', {
     input: createPostSchema,
     resolve: async ({ input, ctx }) => {
       if (!ctx.user) {
         new trpc.TRPCError({
-          code: "FORBIDDEN",
-          message: "Can not create post while logged out",
+          code: 'FORBIDDEN',
+          message: 'Can not create post while logged out',
         });
 
         return null;
@@ -27,12 +27,12 @@ export const postRouter = createRouter()
       return post;
     },
   })
-  .query("get-all", {
+  .query('get-all', {
     resolve: ({ ctx }) => {
       return ctx.prisma.post.findMany();
     },
   })
-  .query("get", {
+  .query('get', {
     input: getPostSchema,
     resolve: ({ input, ctx }) => {
       return ctx.prisma.post.findUnique({ where: { id: input.postId } });

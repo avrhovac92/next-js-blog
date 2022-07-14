@@ -1,9 +1,9 @@
 // src/server/router/context.ts
-import * as trpc from "@trpc/server";
-import * as trpcNext from "@trpc/server/adapters/next";
-import { NextApiRequest } from "next";
-import { verifyJwt } from "../utils/jwt";
-import { prisma } from "./db/client";
+import * as trpc from '@trpc/server';
+import * as trpcNext from '@trpc/server/adapters/next';
+import { NextApiRequest } from 'next';
+import { verifyJwt } from '../utils/jwt';
+import { prisma } from './db/client';
 
 interface CtxUser {
   id: string;
@@ -29,10 +29,7 @@ function getUserFromRequest(req: NextApiRequest) {
   }
 }
 
-export const createContext = ({
-  req,
-  res,
-}: trpcNext.CreateNextContextOptions) => {
+export const createContext = ({ req, res }: trpcNext.CreateNextContextOptions) => {
   const user = getUserFromRequest(req);
 
   return {
